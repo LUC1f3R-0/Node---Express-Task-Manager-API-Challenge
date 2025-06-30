@@ -7,8 +7,12 @@ import sequelize from "./src/config/database.connection.config.js";
     try {
         await sequelize.authenticate();
         console.log("---- DATABASE CONNECTION SUCCESSFUL ----")
+        
+        await sequelize.sync({ alter: process.env.NODE_ENV === 'development' });
+        console.log("---- DATABASE SYNC SUCCESSFUL ----")
 
         app.listen(2000, () => console.log("server runs on http://localhost:2000"))
+        
     } catch (err) {
         console.log("---- DATABASE CONNECTION FAIL ----")
         console.error("Message:", err.message);

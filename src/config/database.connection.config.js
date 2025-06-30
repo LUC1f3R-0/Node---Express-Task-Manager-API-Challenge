@@ -7,6 +7,4 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, process.env.DATABASE_U
     dialect: 'postgres',
 });
 
-sequelize.sync({ alter: process.env.NODE_ENV == 'development' })
-
 export default sequelize;
